@@ -1,0 +1,165 @@
+/* General reset */
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    box-sizing: border-box;
+  }
+  
+  html, body {
+    height: 100%;
+  }
+  
+  /* Wrapper for centering the form */
+  .login-wrapper {
+    margin-top: -80px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+
+  .profile-picture-upload {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+  
+  .profile-picture-circle {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-color: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    border: 2px solid #ccc;
+    position: relative;
+  }
+  
+  .profile-picture {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .upload-icon {
+    font-size: 36px;
+    color: #aaa;
+  }
+  
+  
+  .login-container {
+    background-color: #fff;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0px 4px 30px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+  }
+  
+  /* Logo styling */
+  .logo-container {
+    margin-bottom: 20px;
+  }
+  
+  .logo {
+    width: 150px; /* Adjust to your logo size */
+    margin-bottom: 20px;
+  }
+  
+  /* Form heading and subheading */
+  h2 {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: #333;
+  }
+  
+  .subheading {
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 20px;
+  }
+  
+  /* Error message */
+  .error-message {
+    color: #ff4d4f;
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+  }
+  
+  /* Input field styling */
+  .input-group {
+    margin-bottom: 15px;
+  }
+  
+  .input-field {
+    width: 100%;
+    padding: 14px;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    transition: border-color 0.3s;
+  }
+  
+  .input-field:focus {
+    border-color: #0072ff;
+    outline: none;
+  }
+  
+  /* Submit button styling */
+  .submit-button {
+    width: 100%;
+    background-color: #0072ff;
+    color: white;
+    padding: 14px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .submit-button:hover {
+    background-color: #005bb5;
+  }
+  
+  /* Footer section */
+  .footer {
+    margin-top: 20px;
+  }
+  
+  .footer a {
+    color: #0072ff;
+    text-decoration: none;
+  }
+  
+  .footer a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Add margin-top to push the form below the navbar */
+.register-wrapper {
+    margin-top: 190px; /* Adjust this value to match your navbar height */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(84vh - 80px); /* Subtract navbar height */
+  }
+  
+  /* Other existing styles */
+  .register-container {
+    background-color: #fff;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0px 4px 30px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+  }
+  
