@@ -147,6 +147,7 @@ const ViewAllBanners = () => {
 const styles = {
   container: {
     display: "flex",
+    marginTop: "50px",
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",

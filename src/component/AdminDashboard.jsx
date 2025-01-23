@@ -21,6 +21,14 @@ const Dashboard = () => {
     navigate("/viewAllBanners");
   };
 
+  const handleAddSongs = () => {
+    navigate("/addSongs");
+  };
+
+  const handleViewAllSongs = () => {
+    navigate("/viewAllSongs")
+  };
+
   return (
     <div style={styles.container}>
       {/* Header Section */}
@@ -79,6 +87,32 @@ const Dashboard = () => {
           <div style={styles.buttonContainer}>
             <button onClick={handleViewBanner} style={styles.button}>
               View Banners
+            </button>
+          </div>
+        </div>
+
+        {/* Add Songs */}
+        <div style={styles.card}>
+          <h2 style={styles.cardTitle}>Add Song Lyrics</h2>
+          <p style={styles.cardDescription}>
+            Add Songs Lyrics to your Database to view in your Application.
+          </p>
+          <div style={styles.buttonContainer}>
+            <button onClick={handleAddSongs} style={styles.button}>
+              Add Songs
+            </button>
+          </div>
+        </div>
+
+        {/* View Songs */}
+        <div style={styles.card}>
+          <h2 style={styles.cardTitle}>View All Added Songs</h2>
+          <p style={styles.cardDescription}>
+            View All the Songs Lyrics Added to your Database.
+          </p>
+          <div style={styles.buttonContainer}>
+            <button onClick={handleViewAllSongs} style={styles.button}>
+              View Songs
             </button>
           </div>
         </div>

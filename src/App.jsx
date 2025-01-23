@@ -8,6 +8,9 @@ import VideoUpload from "./component/VideoUpload"
 import ViewAllVideos from "./component/ViewAllVideos"
 import AddBanner from "./component/AddBanner";
 import ViewAllBanners from "./component/ViewAllBanners";
+import AddSongs from "./component/AddSongs";
+import ViewAllSongs from "./component/ViewAllSongs";
+import "./App.css";
 
 const App = () => {
   const handleLoginSuccess = () => {
@@ -58,7 +61,15 @@ const App = () => {
             path="/viewAllBanners"
             element={<ViewAllBanners/>}
           />
-          
+          <Route 
+            path="/addSongs"
+            element={<AddSongs/>}
+          />
+
+          <Route 
+            path="/viewAllSongs"
+            element={<ViewAllSongs/>}
+          />
         </Routes>
       </div>
     </Router>
