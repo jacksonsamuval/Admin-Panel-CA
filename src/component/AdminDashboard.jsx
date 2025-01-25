@@ -29,6 +29,22 @@ const Dashboard = () => {
     navigate("/viewAllSongs")
   };
 
+  const handleViewAllUsers = () => {
+    navigate("/viewAllUsers")
+  };
+
+  const handleAddPastorId = () => {
+    navigate("/addPastorId")
+  };
+
+  const handleViewAllPastorId = () => {
+    navigate("/viewAllPastorId")
+  };
+
+  const handleViewAllPastors = () => {
+    navigate("/viewAllPastors")
+  }
+
   return (
     <div style={styles.container}>
       {/* Header Section */}
@@ -113,6 +129,58 @@ const Dashboard = () => {
           <div style={styles.buttonContainer}>
             <button onClick={handleViewAllSongs} style={styles.button}>
               View Songs
+            </button>
+          </div>
+        </div>
+
+        {/* View AllUsers */}
+        <div style={styles.card}>
+          <h2 style={styles.cardTitle}>View All Availaible Users</h2>
+          <p style={styles.cardDescription}>
+            View All the Availaible Users For Your Application from the Database.
+          </p>
+          <div style={styles.buttonContainer}>
+            <button onClick={handleViewAllUsers} style={styles.button}>
+              View Users
+            </button>
+          </div>
+        </div>
+
+        {/* Add Pastor Id */}
+        <div style={styles.card}>
+          <h2 style={styles.cardTitle}>Add Pastor Id</h2>
+          <p style={styles.cardDescription}>
+            Add PastorId So that Pastors Can Verify and The Data Can be altered in Database.
+          </p>
+          <div style={styles.buttonContainer}>
+            <button onClick={handleAddPastorId} style={styles.button}>
+              Add Pastor Id
+            </button>
+          </div>
+        </div>
+
+        {/* View All Pastor Id */}
+        <div style={styles.card}>
+          <h2 style={styles.cardTitle}>View All Pastor Id</h2>
+          <p style={styles.cardDescription}>
+            View All Pastor Id Added to The Database.
+          </p>
+          <div style={styles.buttonContainer}>
+            <button onClick={handleViewAllPastorId} style={styles.button}>
+              View All Pastor Id
+            </button>
+          </div>
+        </div>
+
+        {/* View All Pastors */}
+        <div style={styles.card}>
+          <h2 style={styles.cardTitle}>View All Pastors</h2>
+          <p style={styles.cardDescription}>
+            View All Pastor Verified Pastors From The Database.
+          </p>
+          <div style={styles.buttonContainer}>
+            <button onClick={handleViewAllPastors} style={styles.button}>
+              View All Pastors
             </button>
           </div>
         </div>

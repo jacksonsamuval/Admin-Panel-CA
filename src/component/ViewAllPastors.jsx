@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-const ViewAllUser = () => {
+const ViewAllPastors = () => {
   const [userData, setUserData] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
@@ -10,7 +10,7 @@ const ViewAllUser = () => {
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const response = await fetch("http://localhost:8080/admin/user", {
+        const response = await fetch("http://localhost:8080/admin/viewAllPastors", {
           method: "GET",
           headers: {
             "Authorization": `Bearer ${token}`,
@@ -79,7 +79,7 @@ const ViewAllUser = () => {
 
                 <div style={styles.problemInfo}>
                   <div style={styles.problemColumn}>
-                    <p><strong>Name:</strong> {user.name}</p>
+                    <p><strong>Pastor Name:</strong> {user.name}</p>
                     <p><strong>Email:</strong> {user.email}</p>
                     <p><strong>Mobile No:</strong> {user.mobileNo}</p>
                   </div>
@@ -213,4 +213,4 @@ const styles = {
   },
 };
 
-export default ViewAllUser;
+export default ViewAllPastors;

@@ -11,6 +11,10 @@ import ViewAllBanners from "./component/ViewAllBanners";
 import AddSongs from "./component/AddSongs";
 import ViewAllSongs from "./component/ViewAllSongs";
 import "./App.css";
+import ViewAllUser from "./component/ViewAllUser";
+import AddPastorId from "./component/AddPastorId";
+import ViewAllPastorId from "./component/ViewAllPastorId";
+import ViewAllPastors from "./component/ViewAllPastors";
 
 const App = () => {
   const handleLoginSuccess = () => {
@@ -69,6 +73,26 @@ const App = () => {
           <Route 
             path="/viewAllSongs"
             element={<ViewAllSongs/>}
+          />
+
+          <Route 
+            path="/viewAllUsers"
+            element={<ViewAllUser/>}
+          />
+
+          <Route 
+            path="/addPastorId"
+            element={<AddPastorId/>}
+          />
+
+          <Route 
+            path="/viewAllPastorId"
+            element={<ViewAllPastorId/>}
+          />
+
+          <Route 
+            path="/viewAllPastors"
+            element={<ViewAllPastors/>}
           />
         </Routes>
       </div>

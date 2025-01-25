@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-const ViewAllUser = () => {
+const ViewAllPastorId = () => {
   const [userData, setUserData] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
@@ -10,17 +10,17 @@ const ViewAllUser = () => {
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const response = await fetch("http://localhost:8080/admin/user", {
+        const response = await fetch("http://localhost:8080/home/pastor/getPastorId", {
           method: "GET",
           headers: {
-            "Authorization": `Bearer ${token}`,
+            Authorization: `Bearer ${token}`,
           },
         });
 
         if (response.ok) {
           const data = await response.json();
-          setUserData(data); 
-          setFilteredData(data); 
+          setUserData(data);
+          setFilteredData(data);
         } else {
           const error = await response.json();
           setErrorMessage(`Error: ${error.message}`);
@@ -38,33 +38,62 @@ const ViewAllUser = () => {
     setSearchQuery(query);
 
     const filtered = userData.filter((user) =>
-      (user.name?.toLowerCase() || "").includes(query.toLowerCase()) ||
-      (user.username?.toLowerCase() || "").includes(query.toLowerCase()) ||
-      (user.mobileNo?.toLowerCase() || "").includes(query.toLowerCase()) ||
       (user.email?.toLowerCase() || "").includes(query.toLowerCase()) ||
-      (user.role?.toLowerCase() || "").includes(query.toLowerCase())
+      (user.pastorName?.toLowerCase() || "").includes(query.toLowerCase()) ||
+      (user.pastorIdentity?.toLowerCase() || "").includes(query.toLowerCase())
     );
 
     setFilteredData(filtered);
+  };
+
+  const deletePastor = async (id, isVerified) => {
+    if (isVerified) {
+      alert("Cannot delete a verified pastor.");
+      return;
+    }
+
+    try {
+      const response = await fetch(`http://localhost:8080/admin/deleteId/${id}`, {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      if (response.ok) {
+        alert("Pastor deleted successfully.");
+        // Remove the deleted pastor from the state
+        const updatedData = userData.filter((user) => user.id !== id);
+        setUserData(updatedData);
+        setFilteredData(updatedData);
+      } else {
+        const error = await response.json();
+        alert(`Failed to delete pastor: ${error.message}`);
+      }
+    } catch (error) {
+      console.error("Error deleting pastor:", error);
+      alert("Failed to delete pastor. Please try again.");
+    }
   };
 
   return (
     <div style={styles.container}>
       <div style={styles.problemDetails}>
         <header style={styles.headerContainer}>
-          <h1 style={styles.header}>All Users</h1>
-          <p style={styles.subHeader}>Details of all users registered in the system</p>
+          <h1 style={styles.header}>All Pastor Id's</h1>
+          <p style={styles.subHeader}>All The Pastor Id's from the Database</p>
         </header>
 
         <div style={styles.searchBar}>
           <input
             type="text"
-            placeholder="Search by description, user name, email or Role"
+            placeholder="Search by email, pastor name or pastor Identity"
             value={searchQuery}
             onChange={(e) => handleSearch(e.target.value)}
             style={styles.searchInput}
-          /> 
-        </div> <br/>
+          />
+        </div>
+        <br />
 
         {errorMessage && <p style={styles.errorMessage}>{errorMessage}</p>}
 
@@ -73,27 +102,44 @@ const ViewAllUser = () => {
             {filteredData.map((user, index) => (
               <div key={index} style={styles.problemCard}>
                 <div style={styles.cardHeader}>
-                  <h3 style={styles.cardTitle}>Username: {user.username}</h3>
-                  <div style={styles.statusTag}>{user.role}</div>
+                  <h3 style={styles.cardTitle}>Pastor Name: {user.pastorName}</h3>
+                  <div
+                    style={{
+                      ...styles.statusTag,
+                      backgroundColor: user.verifiedPastor ? "#28a745" : "#dc3545",
+                    }}
+                  >
+                    {user.verifiedPastor ? "Verified" : "Not Verified"}
+                  </div>
                 </div>
 
                 <div style={styles.problemInfo}>
                   <div style={styles.problemColumn}>
-                    <p><strong>Name:</strong> {user.name}</p>
-                    <p><strong>Email:</strong> {user.email}</p>
-                    <p><strong>Mobile No:</strong> {user.mobileNo}</p>
+                    <p>
+                      <strong>Email:</strong> {user.email}
+                    </p>
+                    <p>
+                      <strong>Pastor Identity:</strong> {user.pastorIdentity}
+                    </p>
                   </div>
-
-                  <div style={styles.problemColumn}>
-                    <p><strong>Role:</strong> {user.role}</p>
-                  </div>
+                  <button
+                    style={{
+                      ...styles.deleteButton,
+                      backgroundColor: user.verifiedPastor ? "#ccc" : "#dc3545",
+                      cursor: user.verifiedPastor ? "not-allowed" : "pointer",
+                    }}
+                    onClick={() => deletePastor(user.id, user.verifiedPastor)}
+                    disabled={user.verifiedPastor}
+                  >
+                    Delete
+                  </button>
                 </div>
               </div>
             ))}
           </div>
         ) : (
           <p style={styles.loadingMessage}>
-            {searchQuery ? "No users match your search." : "Loading..."}
+            {searchQuery ? "No Pastor matches your search." : "Loading..."}
           </p>
         )}
       </div>
@@ -111,6 +157,13 @@ const styles = {
     minHeight: "100vh",
     fontFamily: "'Roboto', sans-serif",
     padding: "30px",
+  },
+  deleteButton: {
+    padding: "10px 20px",
+    border: "none",
+    borderRadius: "8px",
+    color: "#fff",
+    fontWeight: "600",
   },
   searchBar: {
     marginBottom: "20px",
@@ -180,7 +233,6 @@ const styles = {
     color: "#333",
   },
   statusTag: {
-    backgroundColor: "#28a745",
     color: "#fff",
     padding: "6px 12px",
     borderRadius: "4px",
@@ -197,20 +249,10 @@ const styles = {
     flex: 1,
     minWidth: "30%",
   },
-  buttonsContainer: {
-    display: "flex",
-    flexDirection: "row",
-    gap: "15px",
-    marginTop: "20px",
-  },
-  icon: {
-    fontSize: "20px",
-    marginRight: "10px",
-  },
   loadingMessage: {
     fontSize: "16px",
     color: "#888",
   },
 };
 
-export default ViewAllUser;
+export default ViewAllPastorId;
