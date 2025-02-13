@@ -126,7 +126,7 @@ const VideoList = () => {
             video.url ? ( // Check if video.url exists
               <div key={video.id} style={styles.videoCard}>
                 <img
-                  src={`https://img.youtube.com/vi/${new URL(video.url).searchParams.get("v") || ""}/hqdefault.jpg`}
+                  src={`https://img.youtube.com/vi/${video.url}/hqdefault.jpg`}
                   alt={video.videoName}
                   style={styles.thumbnail}
                   onClick={() => handleVideoClick(video)}
@@ -151,7 +151,7 @@ const VideoList = () => {
                   </button>
                 </div>
               </div>
-            ) : null // If no video.url, do not render this video
+            ) : null
           )
         ) : (
           <p style={styles.loadingMessage}>Loading videos...</p>
@@ -202,7 +202,7 @@ const VideoList = () => {
                 style={styles.input}
               />
               <input
-                type="url"
+                type="text"
                 name="videoUrl"
                 value={editingVideo.videoUrl}
                 onChange={handleEditChange}

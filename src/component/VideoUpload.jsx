@@ -143,7 +143,7 @@ const AddVideo = () => {
           <label style={styles.label}>Video URL:</label>
           <input
             style={styles.input}
-            type="url"
+            type="text"
             value={url}
             onChange={(e) => setUrl(e.target.value)}
           />
